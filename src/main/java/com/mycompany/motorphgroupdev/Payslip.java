@@ -9,10 +9,25 @@ package com.mycompany.motorphgroupdev;
  * @author Carl Warren
  */
 public class Payslip {
+    private Employee employee;
+    private double grossSalary;
+    private double deductions;
+    private double netSalary;
 
-    public void generatePayslip(int employeeID, double grossSalary, double totalDeductions, 
-                                double netSalary, double riceSubsidy, double phoneAllowance, 
-                                double clothingAllowance, double overtimePay) {
-        // TODO: Generate and display payslip
+    public Payslip(Employee employee, double grossSalary, double deductions, double netSalary) {
+        this.employee = employee;
+        this.grossSalary = grossSalary;
+        this.deductions = deductions;
+        this.netSalary = netSalary;
+    }
+
+    public void displayPayslip() {
+        System.out.println("\n=== Payslip ===");
+        System.out.println("Employee: " + employee.getName());
+        System.out.println("Position: " + employee.getPosition());
+        System.out.println("Gross Salary: " + grossSalary);
+        System.out.println("Deductions: " + deductions);
+        System.out.println("Net Salary: " + netSalary);
+        System.out.println("================\n");
     }
 }

@@ -7,48 +7,43 @@
  * @author Carl Warren
  */
 package com.mycompany.motorphgroupdev;
+
 public class Employee {
-    /* Employee attributes
-    this will be used to create our objects or actual employee info
-    */
-    private int employeeNumber;
+    private String employeeID;
     private String lastName;
     private String firstName;
-    private String birthDate;
+    private String birthday;
     private String address;
     private String phoneNumber;
     private String sssNumber;
     private String philhealthNumber;
-    private String taxidentificationNumber;
-    private String pagibigNumber;
+    private String tinNumber;
+    private String pagIbigNumber;
     private String status;
     private String position;
     private String immediateSupervisor;
-    private int basicSalary;
-    private int riceSubsidy;
-    private int phoneAllowance;
-    private int clothingAllowance;
-    private int grosssemimonthlyRate;
+    private double basicSalary;
+    private double riceSubsidy;
+    private double phoneAllowance;
+    private double clothingAllowance;
+    private double grossSemiMonthlyRate;
     private double hourlyRate;
-    
-    /* Constructor, special method in Java that is called automatically when you create an object. 
-    It is used to initialize an object’s attributes.
-    */
-    
-    public Employee(int employeeNumber, String lastName, String firstName, String birthDate, String address, String phoneNumber, String sssNumber, String philhealthNumber, String taxidentificationNumber, String pagibigNumber, String status, String position, String immediateSupervisor, int basicSalary, int riceSubsidy, int phoneAllowance, int clothingAllowance, int grosssemimonthlyRate, double hourlyRate) {// used double on hourlyRate bc it has decimal
-            
-    // "this" is a constructor parameter: helps pass values into an object when it is created.
-    // "instance variable" is also called class attribute, which are values assgined to an object.
-        this.employeeNumber = employeeNumber;
+
+    // Constructor
+    public Employee(String employeeID, String lastName, String firstName, String birthday, String address,
+                    String phoneNumber, String sssNumber, String philhealthNumber, String tinNumber, String pagIbigNumber,
+                    String status, String position, String immediateSupervisor, double basicSalary, double riceSubsidy,
+                    double phoneAllowance, double clothingAllowance, double grossSemiMonthlyRate, double hourlyRate) {
+        this.employeeID = employeeID;
         this.lastName = lastName;
         this.firstName = firstName;
-        this.birthDate = birthDate;
+        this.birthday = birthday;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.sssNumber = sssNumber;
         this.philhealthNumber = philhealthNumber;
-        this.taxidentificationNumber = taxidentificationNumber;
-        this.pagibigNumber = pagibigNumber;
+        this.tinNumber = tinNumber;
+        this.pagIbigNumber = pagIbigNumber;
         this.status = status;
         this.position = position;
         this.immediateSupervisor = immediateSupervisor;
@@ -56,47 +51,65 @@ public class Employee {
         this.riceSubsidy = riceSubsidy;
         this.phoneAllowance = phoneAllowance;
         this.clothingAllowance = clothingAllowance;
-        this.grosssemimonthlyRate = grosssemimonthlyRate;
+        this.grossSemiMonthlyRate = grossSemiMonthlyRate;
         this.hourlyRate = hourlyRate;
     }
-    
-     // Method to display employee details
-    /* public void because this is only meanth to print, not return a value. "===================================" is used to as visual separator so that printed output is easier to read. "+" as String concatenation. 
-    It joins "Employee Number: " with the actual value of employeeNumber.
-    
-    */
-    public void displayEmployeeInfo() {
-        System.out.println("===================================");
-        System.out.println("Employee Number: " + employeeNumber);
-        System.out.println("Name: " + firstName + " " + lastName);
-        System.out.println("Birthdate: " + birthDate);
-        System.out.println("Address: " + address);
-        System.out.println("Phone Number: " + phoneNumber);
-        System.out.println("SSS #: " + sssNumber);
-        System.out.println("PhilHealth #: " + philhealthNumber);
-        System.out.println("TIN #: " + taxidentificationNumber);
-        System.out.println("Pag-IBIG #: " + pagibigNumber);
-        System.out.println("Status: " + status);
-        System.out.println("Position: " + position);
-        System.out.println("Immediate Supervisor: " + immediateSupervisor);
-        System.out.println("Basic Salary: ₱" + basicSalary);
-        System.out.println("Rice Subsidy: ₱" + riceSubsidy);
-        System.out.println("Phone Allowance: ₱" + phoneAllowance);
-        System.out.println("Clothing Allowance: ₱" + clothingAllowance);
-        System.out.println("Gross Semi-Monthly Rate: ₱" + grosssemimonthlyRate);
-        System.out.println("Hourly Rate: ₱" + hourlyRate);
-        System.out.println("===================================");
-    }
-    // Placeholder methods
-    public void addEmployee() {
-        // TODO: Implement add employee logic
+
+    // Getters
+    public String getEmployeeID() { return employeeID; }
+    public String getLastName() { return lastName; }
+    public String getFirstName() { return firstName; }
+    public String getBirthday() { return birthday; }
+    public String getAddress() { return address; }
+    public String getPhoneNumber() { return phoneNumber; }
+    public String getSssNumber() { return sssNumber; }
+    public String getPhilhealthNumber() { return philhealthNumber; }
+    public String getTinNumber() { return tinNumber; }
+    public String getPagIbigNumber() { return pagIbigNumber; }
+    public String getStatus() { return status; }
+    public String getPosition() { return position; }
+    public String getImmediateSupervisor() { return immediateSupervisor; }
+    public double getBasicSalary() { return basicSalary; }
+    public double getRiceSubsidy() { return riceSubsidy; }
+    public double getPhoneAllowance() { return phoneAllowance; }
+    public double getClothingAllowance() { return clothingAllowance; }
+    public double getGrossSemiMonthlyRate() { return grossSemiMonthlyRate; }
+    public double getHourlyRate() { return hourlyRate; }
+
+    // Setters
+    public void setAddress(String address) { this.address = address; }
+    public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
+    public void setBasicSalary(double basicSalary) { this.basicSalary = basicSalary; }
+
+    // Calculate Total Allowances
+    public double calculateTotalAllowances() {
+        return riceSubsidy + phoneAllowance + clothingAllowance;
     }
 
-    public void removeEmployee() {
-        // TODO: Implement remove employee logic
+    // Calculate Gross Monthly Salary (Basic + Allowances)
+    public double calculateGrossMonthlySalary() {
+        return basicSalary + calculateTotalAllowances();
     }
 
-    public void viewEmployeeDetails() {
-        // TODO: Fetch and display employee details
+    // Display Employee Info
+    public void displayEmployee() {
+        System.out.println("Employee ID: " + employeeID + ", Name: " + firstName + " " + lastName);
+        System.out.println("Position: " + position + ", Supervisor: " + immediateSupervisor);
+        System.out.println("Gross Monthly Salary: " + calculateGrossMonthlySalary());
     }
-}employee.java,
+
+    // Method to get basic salary (used in Payroll calculations)
+    public double getSalary() {
+        return this.basicSalary;
+    }
+
+    // Method to get full name
+    public String getName() {
+        return this.firstName + " " + this.lastName;
+    }
+
+    // Placeholder for attendance - adapt as needed
+    public int getAttendance() {
+        return 0; // Adjust based on how you track attendance
+    }
+}

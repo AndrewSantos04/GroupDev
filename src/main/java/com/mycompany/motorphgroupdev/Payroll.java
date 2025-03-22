@@ -4,25 +4,37 @@
  */
 package com.mycompany.motorphgroupdev;
 
-/**
- *
- * @author Carl Warren
- */
+import java.util.List;
+
 public class Payroll {
 
-    public double calculateGrossSalary(int employeeID, double hoursWorked, double hourlyRate) {
-        // TODO: Compute and return gross salary
-        return 0.0;
+    // Calculate gross salary including overtime pay
+    public static double calculateGrossSalary(Employee employee, Attendance attendance) {
+        double basicSalary = employee.getBasicSalary();
+        double totalAllowances = employee.calculateTotalAllowances();
+        double hourlyRate = employee.getHourlyRate();
+        int overtimeHours = attendance.getOvertimeHours();
+
+        // Assume overtime multiplier is 1.25x for regular overtime
+        double overtimeMultiplier = 1.25;
+        double overtimePay = overtimeHours * hourlyRate * overtimeMultiplier;
+
+        return basicSalary + totalAllowances + overtimePay;
     }
 
-    public double calculateDeductions(int employeeID, double basicSalary, double sssRate, 
-                                      double philHealthRate, double pagIbigRate, double taxRate) {
-        // TODO: Compute and return total deductions
-        return 0.0;
-    }
-
-    public double calculateNetSalary(int employeeID, double grossSalary, double totalDeductions) {
-        // TODO: Compute and return net salary
-        return 0.0;
+    // Display payroll details
+    public static void displayPayroll(Employee employee, Attendance attendance) {
+        double grossSalary = calculateGrossSalary(employee, attendance);
+        
+        System.out.println("\n📊 Payroll Summary for " + employee.getName());
+        System.out.println("Basic Salary: " + employee.getBasicSalary());
+        System.out.println("Total Allowances: " + employee.calculateTotalAllowances());
+        System.out.println("Overtime Hours: " + attendance.getOvertimeHours());
+        System.out.println("Overtime Pay: " + (attendance.getOvertimeHours() * employee.getHourlyRate() * 1.25));
+        System.out.println("Gross Salary: " + grossSalary);
     }
 }
+
+//calculates the number of hours an employee has worked in a week.
+//calculates the gross weekly salary of an employee based on hours worked.
+//calculates the net weekly salary of an employee after applying generic deductions.
