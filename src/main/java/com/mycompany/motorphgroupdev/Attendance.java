@@ -43,7 +43,7 @@ public class Attendance {
     }
 
     public double getOvertimeHours() {
-        return overtimeHours;
+        return overtimeHours; // Fixed: Only one method definition for `getOvertimeHours`
     }
 
     // Setters with validation
@@ -68,12 +68,19 @@ public class Attendance {
         this.overtimeHours = overtimeHours;
     }
 
-    // Method to update attendance with validation
+    // Update overtime hours
+    public void updateOvertime(double hours) {
+        if (hours < 0) {
+            throw new IllegalArgumentException("Overtime hours cannot be negative.");
+        }
+        this.overtimeHours += hours; // Updated logic to accumulate overtime hours
+    }
+
+    // Method to update attendance
     public void updateAttendance(int daysWorked, int absences, double overtimeHours) {
         if (daysWorked < 0 || absences < 0 || overtimeHours < 0) {
             throw new IllegalArgumentException("Days worked, absences, and overtime hours cannot be negative.");
         }
-
         this.daysWorked += daysWorked;
         this.absences += absences;
         this.overtimeHours += overtimeHours;
